@@ -42,4 +42,4 @@ ENV PYTHONPATH=/opt/app
 WORKDIR /opt/app
 
 ENTRYPOINT []
-CMD ["/bin/bash"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8008"]
