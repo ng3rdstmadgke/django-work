@@ -9,4 +9,7 @@ pip install -r requirements.txt
 
 # プロジェクト作成
 django-admin startproject app
+
+# 起動
+python manage.py runserver
 ```
