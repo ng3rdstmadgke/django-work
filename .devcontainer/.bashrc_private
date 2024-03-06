@@ -1,4 +1,6 @@
 #!/bin/bash
 
+export AWS_ENDPOINT_URL="http://localstack.django-work.local:4566"
+
 alias ll="ls -alF"
-alias awslocal="aws --endpoint-url http://localstack.django-work.local:4566"
+alias awslocal="aws --endpoint-url $AWS_ENDPOINT_URL"
