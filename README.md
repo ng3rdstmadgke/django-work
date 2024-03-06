@@ -8,20 +8,31 @@ python app/manage.py migrate
 
 # 管理ユーザーの作成
 python app/manage.py createsuperuser
+```
 
-# アプリの起動 (開発モード)
+アプリの起動 (開発モード)
+
+```bash
 ./bin/app.sh
+```
 
-# アプリの起動 (本番モード)
+アプリの起動 (本番モード)
+
+```bash
+# 静的ファイルの収集
+# --clear: 現在存在するファイルを削除してからファイルを収集
+# --no-input: 上書きの確認を省略
+python app/manage.py collectstatic --clear --no-input
+
+# 起動
 ./bin/uwsgi.sh
-
-
-# 以下のURLで動作確認
-# http://localhost:8008/polls
-# http://localhost:8008/admin
 ```
 
 
+## 動作確認
+
+- http://localhost:8008/polls
+- http://localhost:8008/admin
 
 
 # Jupyterの起動
