@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from app.env import get_env
+
+env = get_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -72,11 +75,16 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+db_secret = env.get_db_secret()
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        # https://docs.djangoproject.com/en/5.0/ref/settings/#std-setting-DATABASE-ENGINE
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": env.db_name,
+        "USER": db_secret.db_user,
+        "PASSWORD": db_secret.db_password,
+        "HOST": db_secret.db_host,
+        "PORT": db_secret.db_port,
     }
 }
 
