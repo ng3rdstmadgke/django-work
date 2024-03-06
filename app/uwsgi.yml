@@ -1,0 +1,17 @@
+# DjangoをuWSGIとともに使うには?: https://docs.djangoproject.com/ja/5.0/howto/deployment/wsgi/uwsgi/
+# uWSGI Options: https://uwsgi.readthedocs.io/en/latest/Options.html
+# uwsgi -h コマンドでもオプションを確認できる
+uwsgi:
+  http: 0.0.0.0:8008
+  module: app.wsgi:application
+  master: true  # uWSGI 組み込みの prefork+threading マルチワーカー管理モードを有効化する。 (一般的にはtrueで実行することを推奨)
+  env: DJANGO_SETTINGS_MODULE=app.settings
+  chdir: /django-work/app  # アプリをロードする前に、指定したディレクトリに移動
+  wsgi-file: /django-work/app/app/wsgi.py
+  processes: 2  # ワーカー数 (masterプロセスとは別)
+  #enable-threads: true  # スレッドを有効化する
+  #threads: 2  # 1プロセスあたりのスレッド数を指定する
+  harakiri: 600  # リクエストの処理にこの秒以上かかったらワーカーを強制終了し、再起動する
+  max-requests: 5000  # この回数のリクエストを処理したらワーカーを再起動する
+  buffer-size: 65535  # 最大リクエストサイズ
+  vacuum: true  # プロセス終了時にファイル/ソケットをすべて削除する

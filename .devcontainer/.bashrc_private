@@ -3,6 +3,7 @@
 export PYTHONPATH=${PYTHONPATH}:${CONTAINER_PROJECT_ROOT}/app
 
 # アプリで利用する環境変数
+export DJANGO_DEBUG_MODE=true
 export STAGE=local
 export DB_NAME=local
 export DB_SECRET_NAME=/django-work/local/db

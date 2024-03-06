@@ -12,7 +12,7 @@ class DbSecret(BaseModel):
     db_port: int
 
 class Environment(BaseSettings):
-    # アプリ・lambda共通で必要な環境変数
+    django_debug_mode: bool = False
     stage: str
     db_name: str
     db_secret_name: str

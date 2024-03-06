@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
+
 from pathlib import Path
 from app.env import get_env
 
@@ -26,8 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-l2a^)4qqwfs#cj!q6jnfrh=0%zcy367s=2ff4=now@!yxqp@_f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.django_debug_mode
 
+# DjangoのALLOWED_HOSTS | Qiita: https://qiita.com/kkk777/items/b9452738bc5d3bb35542
 ALLOWED_HOSTS = []
 
 
@@ -132,7 +135,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# 静的ファイルのURLの接頭辞
 STATIC_URL = 'static/'
+
+# 静的ファイルのディレクトリ
+STATIC_ROOT = os.path.join(BASE_DIR, "static_dst")
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
