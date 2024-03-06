@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# アプリで利用する環境変数
+export STAGE=local
+export DB_NAME=local
+export DB_SECRET_NAME=/django-work/local/db
 export AWS_ENDPOINT_URL="http://localstack.django-work.local:4566"
 
 alias ll="ls -alF"
