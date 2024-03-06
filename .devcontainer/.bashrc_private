@@ -1,0 +1,4 @@
+#!/bin/bash
+
+alias ll="ls -alF"
+alias awslocal="aws --endpoint-url http://localstack.django-work.local:4566"

@@ -11,5 +11,5 @@ pip install -r requirements.txt
 django-admin startproject app
 
 # 起動
-python manage.py runserver
+python manage.py runserver 0.0.0.0:8008
 ```

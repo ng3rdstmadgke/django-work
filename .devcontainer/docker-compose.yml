@@ -1,0 +1,63 @@
+version: '3.2'
+services:
+  main:
+    hostname: main.django-work.local
+    build:
+      context: ../
+      dockerfile: docker/devcontainer/Dockerfile
+    volumes:  # docker-compose.yml があるディレクトリからの相対パスで指定する
+      - ..:/django-work:cached
+      - ~/.aws:/home/vscode/.aws:cached
+      - ~/.ssh:/home/vscode/.ssh:cached
+      - ~/.docker:/home/vscode/.docker:cached
+    command: sleep infinity
+    networks:
+      br-django-work: {}
+
+  localstack:
+    hostname: localstack.django-work.local
+    build:
+      context: ../
+      dockerfile: docker/localstack/Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - DEBUG=1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      # LocalStack - init-fooks: https://docs.localstack.cloud/references/init-hooks/
+      - ../docker/localstack/init:/etc/localstack/init
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      br-django-work: {}
+
+  mysql:
+    hostname: mysql.django-work.local
+    build:
+      context: ../
+      dockerfile: docker/mysql/Dockerfile
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    healthcheck:
+      test: [
+        "CMD-SHELL",
+        "MYSQL_PWD=${DB_PASSWORD}",
+        "mysqladmin",
+        "ping",
+        "-u",
+        "${DB_USER}",
+        "-h",
+        "${DB_HOST}",
+        "-P",
+        "${DB_PORT}"
+      ]
+      interval: 5s
+      retries: 5
+    networks:
+      br-django-work: {}
+networks:
+  br-django-work:
+    driver: bridge
+    name: br-django-work
