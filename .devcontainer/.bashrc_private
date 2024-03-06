@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export PYTHONPATH=${PYTHONPATH}:${CONTAINER_PROJECT_ROOT}/app
+
 # アプリで利用する環境変数
 export STAGE=local
 export DB_NAME=local
