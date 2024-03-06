@@ -34,11 +34,19 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Pollsアプリケーション: polls/app.py:PollsConfig
+    'polls.apps.PollsConfig',
+    # 管理サイト: https://docs.djangoproject.com/ja/5.0/ref/contrib/admin/#module-django.contrib.admin
     'django.contrib.admin',
+    # 認証システム: https://docs.djangoproject.com/ja/5.0/topics/auth/#module-django.contrib.auth
     'django.contrib.auth',
+    # コンテンツタイプフレームワーク: https://docs.djangoproject.com/ja/5.0/ref/contrib/contenttypes/#module-django.contrib.contenttypes
     'django.contrib.contenttypes',
+    # セッションフレームワーク: https://docs.djangoproject.com/ja/5.0/topics/http/sessions/#module-django.contrib.sessions
     'django.contrib.sessions',
+    # メッセージフレームワーク: https://docs.djangoproject.com/ja/5.0/ref/contrib/messages/#module-django.contrib.messages
     'django.contrib.messages',
+    # 静的ファイル管理フレームワーク: https://docs.djangoproject.com/ja/5.0/ref/contrib/staticfiles/#module-django.contrib.staticfiles
     'django.contrib.staticfiles',
 ]
 
@@ -113,7 +121,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# https://docs.djangoproject.com/ja/5.0/ref/settings/#std-setting-TIME_ZONE
+TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
 
