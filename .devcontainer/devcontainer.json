@@ -76,6 +76,11 @@
   // vscodeの拡張機能をインストールするための設定
   "customizations": {
     "vscode": {
+      "settings": {
+        // devcontainer起動時にextensionsが自動インストールされない問題
+        // https://dev.classmethod.jp/articles/fixed-an-issue-where-extensions-could-not-be-installed-in-the-vs-code-remote-development-environment/
+        "extensions.verifySignature": false
+      },
       "extensions": [
         // Docs
         "hediet.vscode-drawio",
