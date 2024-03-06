@@ -9,5 +9,5 @@ DB_PASSWORD=$(echo $SECRET_STRING | jq -r ".db_password")
 DB_PORT=$(echo $SECRET_STRING | jq -r ".db_port")
 DB_USER=$(echo $SECRET_STRING | jq -r ".db_user")
 
-echo MYSQL_PWD=$DB_PASSWORD mysql -h $DB_HOST -u $DB_USER -P $DB_PORT
-MYSQL_PWD=$DB_PASSWORD mysql -h $DB_HOST -u $DB_USER -P $DB_PORT
+echo MYSQL_PWD=$DB_PASSWORD mysql -h $DB_HOST -u $DB_USER -P $DB_PORT $DB_NAME
+MYSQL_PWD=$DB_PASSWORD mysql -h $DB_HOST -u $DB_USER -P $DB_PORT $DB_NAME
